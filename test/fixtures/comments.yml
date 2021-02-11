@@ -4,8 +4,10 @@ one:
   commenter: MyString
   body: MyText
   article: one
+  status: public
 
 two:
   commenter: MyString
   body: MyText
   article: two
+  status: private
