@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_article, only: [:index, :create]
   before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :authenticate_and_set_user, only: [:create, :update, :destroy]
 
   # GET /articles/{article_id}/comments
   def index

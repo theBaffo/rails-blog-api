@@ -1,7 +1,12 @@
 require "test_helper"
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
+  include ApiGuard::Test::ControllerHelper
+
   setup do
+    @tokens = jwt_and_refresh_token(users(:one), 'user')
+    @headers = { Authorization: 'Bearer ' + @tokens[0].to_s }
+
     @article = articles(:one)
   end
 
@@ -12,7 +17,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create article" do
     assert_difference('Article.count') do
-      post articles_url, params: { article: { body: @article.body, title: @article.title, status: @article.status } }, as: :json
+      post articles_url, headers: @headers, params: { article: { body: @article.body, title: @article.title, status: @article.status } }, as: :json
     end
 
     assert_response 201
@@ -24,13 +29,13 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update article" do
-    patch article_url(@article), params: { article: { body: @article.body, title: @article.title, status: @article.status } }, as: :json
+    patch article_url(@article), headers: @headers, params: { article: { body: @article.body, title: @article.title, status: @article.status } }, as: :json
     assert_response 200
   end
 
   test "should destroy article" do
     assert_difference('Article.count', -1) do
-      delete article_url(@article), as: :json
+      delete article_url(@article), headers: @headers, as: :json
     end
 
     assert_response 204
