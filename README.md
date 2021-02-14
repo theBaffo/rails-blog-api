@@ -1,24 +1,5 @@
-# README
+# rails-blog-api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple REST API, created following the "Getting Started with Rails" tutorial.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The API use [API Guard](https://github.com/Gokul595/api_guard) to provide JWT Authentication.
